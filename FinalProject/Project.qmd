@@ -3,3 +3,14 @@ title: "Project.qmd"
 format: html
 ---
 
+Goals: Comparing different willow species!
+
+## Step 1: Downloading and aligning the data
+
+We need to download the data from SRA, and align to a reference genome.
+
+We are using the *S. purpurae* reference
+
+```{bash}
+download datasets genomes -taxon "Salix purpurae"
+```
