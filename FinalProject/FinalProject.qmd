@@ -1,5 +1,5 @@
 ---
-title: "Final Project"
+title: "FinalProject"
 ---
 
 ## Quarto
