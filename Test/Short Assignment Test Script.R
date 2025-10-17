@@ -1,5 +1,7 @@
 #Load in your code
-Source ("C:/Users/cleob/Gitub/PopGen25.CB/Short")
+setwd("C:/Users/cleob/Gitub/PopGen25.CB")
+#source
+source("Test/Short Assignment Functions.R")
 
 #Load in test data
 
