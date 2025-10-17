@@ -1,7 +1,7 @@
 
 
 #Load in your code
-source("C:/Users/cleob/Gitub/PopGen25/scr/Babor")
+#ource("C:/Users/cleob/Gitub/PopGen25/scr/Babor")
 
 #Load in test data
 
@@ -11,7 +11,7 @@ pops = read.table("C:/Users/cleob/Gitub/PopGen25.CB/Test/pop_file.txt")
 
 freq_GT = function(site,ploidy=2){
   clean_site = na.omit(site)
-  p = sum(clean_site)/(ploidy*length(clean_site)) #How will ploidy go in here?
+  p = sum(clean_site)/(ploidy*length(clean_site))
   return(p)
 }
 #Assuming diploid
