@@ -31,12 +31,12 @@ process_GT = function(GT,samples){
   chr = gsub(":.*","",ids)
   pos = as.numeric(gsub(".*:","",ids))
 
-summary_list = list("chr"=chr,"pos"=pos)
-summary_list$sample_het=apply(GT,1,sample_het)
-
   pops = sort(unique(samples$population))
   pops_char = as.character(pops)
 
+summary_list = list("chr"=chr,"pos"=pos)
+summary_list$sample_het=apply(GT,1,sample_het)
+  
   #Get indices for each population
   idx_pops = lapply(pops,function(x) {
     which(colnames(GT) %in% samples$sample_id[which(samples$population==x)])
@@ -50,7 +50,7 @@ summary_list$sample_het=apply(GT,1,sample_het)
     apply(GT[, idx], 1,function(x) sum(!is.na(x)))
   })
   names(obs_alleles) = pops
-  #summary_list[["obs"]] = obs_alleles
+  summary_list[["obs"]] = obs_alleles
 
   # Now, let's get allele frequencies        
   ps = lapply(idx_pops,function(idx) {
@@ -66,7 +66,7 @@ summary_list$sample_het=apply(GT,1,sample_het)
 
   #average r2 for each pop
   avg_r2 = sapply(idx_pops, function(idx){
-    mat= GT[, idx]
+    mat = GT[, idx]
     cor_mat = (cor(t(mat))^2)
     mean(cor_mat[upper.tri(cor_mat)], na.rm=TRUE)
   })
@@ -86,7 +86,7 @@ summary_list$sample_het=apply(GT,1,sample_het)
     n2 = obs_alleles[[pop2]]
     p1 = ps[[pop1]]
     p2 = ps[[pop2]]
-    mapply(fst_site,p1,p2,n1,n2)
+    mapply(fst_site, p1, p2, n1, n2)
   })
 
   names(fst) = apply(pop_pairs, 2, paste, collapse="-")
@@ -94,8 +94,8 @@ summary_list[["fst"]] = fst
 
   #And dxy
   dxy =lapply(1:ncol(pop_pairs),function(i){
-    p1 = ps[[pop_pairs[1, i]]]
-    p2 = ps[[pop_pairs[2, i]]]
+    p1 = ps[[pop[1]]]
+    p2 = ps[[pop[2]]]
     pop1 = pop_pairs[1,i] 
     pop2 = pop_pairs[2,i]
     mapply(dxy_site, p1, p2)
@@ -103,7 +103,7 @@ summary_list[["fst"]] = fst
 
   #Adding names to dxy as well
   names(dxy) = apply(pop_pairs, 2, paste, collapse="-")
-  
+
 summary_list[["dxy"]] = dxy
   
   summary_list = list(
