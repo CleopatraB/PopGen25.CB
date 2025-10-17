@@ -1,7 +1,7 @@
 #Load in your code
-setwd("C:/Users/cleob/Gitub/PopGen25.CB")
+#setwd("C:/Users/cleob/Gitub/PopGen25.CB")
 #source
-source("Test/Short Assignment Functions.R")
+#source("Test/Short Assignment Functions.R")
 
 #Load in test data
 
@@ -31,7 +31,7 @@ expected_mean_af = mean(sapply(1:nrow(test_data), function(i) freq_GT(test_data[
   if(ncol(mat)>=2){
     cor_mat = (cor(t(mat))^2)
     expected_avg_r2 = mean(cor_mat[upper.tri(cor_mat)])
-  } else expected_avg_r2 = NA
+  } else expected_avg_r2 = #
   stopifnot(all.equal(expected_avg_r2, results$avg_r2[pop_chr]))
 }
 
